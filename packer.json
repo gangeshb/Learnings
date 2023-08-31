@@ -2,14 +2,7 @@
   "builders": [{
     "type": "amazon-ebs",
     "region": "ap-south-1",
-    "source_ami_filter": {
-      "filters": {
-        "name": "ubuntu/images/*ubuntu-focal-20.04-amd64-server-*",
-        "root-device-type": "ebs"
-      },
-      "owners": ["580272304833"],
-      "most_recent": true
-    },
+    "source_ami": "ami-0700df939e7249d03",
     "instance_type": "t2.micro",
     "ssh_username": "ubuntu",
     "ami_name": "my-ubuntu-ami-{{timestamp}}"
