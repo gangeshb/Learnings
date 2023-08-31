@@ -1,17 +1,28 @@
 {
   "builders": [{
     "type": "amazon-ebs",
-    "region": "us-east-1",
+    "region": "ap-south-1",
     "source_ami_filter": {
       "filters": {
         "name": "ubuntu/images/*ubuntu-focal-20.04-amd64-server-*",
         "root-device-type": "ebs"
       },
-      "owners": ["099720109477"],
+      "owners": ["580272304833"],
       "most_recent": true
     },
     "instance_type": "t2.micro",
     "ssh_username": "ubuntu",
     "ami_name": "my-ubuntu-ami-{{timestamp}}"
-  }]
+  }],
+  "provisioners": [
+    {
+      "type": "shell",
+      "inline": [
+        "sudo apt-get update",
+        "sudo apt-get install -y nginx",
+        "sudo systemctl enable nginx",
+        "sudo systemctl start nginx"
+      ]
+    }
+  ]
 }
