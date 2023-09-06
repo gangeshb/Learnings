@@ -20,6 +20,14 @@ jobs:
           sudo mv packer /usr/local/bin/
         if: success()
 
+      - name: Initialize Packer
+        run: packer init .
+        # Add this step to explicitly initialize Packer
+
+      - name: Verify Packer Version
+        run: packer version
+        # Add this step to confirm the Packer version
+
       - name: Build AMI
         run: |
           packer build .
