@@ -11,7 +11,7 @@ source "amazon-ebs" "base" {
   ami_name      = "base-ami"
   instance_type = "t2.micro"
   region        = "ap-south-1"
-  source_ami    = "ami-0864fb340585ff8c1"
+  source_ami    = "ami-0ed2f971d5898dd2d"
   ssh_username  = "ec2-user"
   iam_instance_profile = "BaseRole"
 
