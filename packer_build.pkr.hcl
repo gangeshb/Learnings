@@ -11,7 +11,7 @@ source "amazon-ebs" "base" {
   ami_name      = "base-ami"
   instance_type = "t2.micro"
   region        = "ap-south-1"
-  source_ami    = "ami-0ed2f971d5898dd2d"
+  source_ami    = "ami-03cb1380eec7cc118
   vpc_id        = "vpc-0080bc3774c350186"
   subnet_id     = "subnet-06918218607cffd10"
   ssh_username  = "ec2-user"
