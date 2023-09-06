@@ -26,7 +26,7 @@ build {
   provisioner "shell" {
     script = "./base_script.sh"
     pause_before = "10s"
-    timeout      = "10s"
+    timeout      = "30m"
   }
 
 
