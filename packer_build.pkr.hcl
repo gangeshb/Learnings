@@ -25,7 +25,7 @@ build {
   provisioner "shell" {
     script = "./listAmi.sh"
     environment_vars = {
-      AMI_NAME = "{{ .Build.Sources[0].AmiName }}"
+      "AMI_NAME" = "{{ .Source.AmiName }}"
     }
   }
 
