@@ -50,16 +50,10 @@ jobs:
             echo "AMI with name $ami_name already exists. Exiting gracefully."
             echo "AMI check outcome: success"
             exit 0
+          else
+            packer build packer_build.pkr.hcl
           fi
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-      - name: Build AMI
-        run: |
-          packer validate packer_build.pkr.hcl
-          packer build packer_build.pkr.hcl
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        if: steps.ami_check.outcome != 'success'
