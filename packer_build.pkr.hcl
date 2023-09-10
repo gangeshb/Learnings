@@ -32,4 +32,5 @@ build {
     pause_before = "10s"
     timeout      = "20m"
   }
+on-error = "graceful-halt"
 }
