@@ -50,9 +50,6 @@ jobs:
             echo "AMI with name $ami_name already exists. Exiting gracefully."
             echo "AMI check outcome: success"
             exit 0
-          else
-            echo "AMI with name $ami_name does not exist. Proceeding with Packer build."
-            echo "AMI check outcome: failure"
           fi
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
