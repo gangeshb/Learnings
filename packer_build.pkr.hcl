@@ -25,19 +25,6 @@ build {
   provisioner "shell" {
     script = "./listAmis.sh"
     environment_vars = ["AMI_NAME=$(toString .Source.AmiName)"]
-
-    ami_name=$(toString .Source.AmiName)
-
-    ami_list=$(aws ec2 describe-images \
-      --region $region \
-      --owners $your_account_id \
-      --query 'Images[*].[Name]' \
-      --output text)
-
-    if [[ "$ami_list" == *"$ami_name"* ]]; then
-      echo "AMI with name $ami_name already exists."
-      exit 0
-    fi
   }
 
   provisioner "shell" {
