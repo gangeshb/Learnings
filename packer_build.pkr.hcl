@@ -23,7 +23,7 @@ build {
   sources = ["source.amazon-ebs.base"]
 
   provisioner "shell" {
-    script = "./listAmi.sh"
+    script = "./listAmis.sh"
     environment_vars = ["{{ .Source.AmiName }}"]
   }
 
