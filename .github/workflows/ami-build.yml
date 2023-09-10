@@ -28,6 +28,12 @@ jobs:
         run: packer version
         ## Add this step to confirm the Packer version
 
+      - name: Extract AMI Name from Packer Config
+        id: extract_ami_name
+        run: |
+          AMI_NAME=$(grep -oP 'ami_name\s*=\s*"\K[^"]+' packer_build.pkr.hcl)
+          echo "::set-output name=ami_name::$AMI_NAME"
+
       - name: Check if AMI exists
         id: ami_check
         run: |
