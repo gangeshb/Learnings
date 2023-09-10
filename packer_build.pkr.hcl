@@ -22,10 +22,10 @@ build {
   name    = "base-16-20-ami-build-name"
   sources = ["source.amazon-ebs.base"]
 
-  provisioner "shell" {
-    script = "./listAmis.sh"
-    environment_vars = ["AMI_NAME=$(toString .Source.AmiName)"]
-  }
+#  provisioner "shell" {
+#    script = "./listAmis.sh"
+#    environment_vars = ["AMI_NAME=$(toString .Source.AmiName)"]
+#  }
 
   provisioner "shell" {
     script = "./base_script.sh"
