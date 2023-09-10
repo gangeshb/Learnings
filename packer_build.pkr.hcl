@@ -34,7 +34,7 @@ build {
       --query 'Images[*].[Name]' \
       --output text)
 
-    if [[ $ami_list == *"$ami_name"* ]]; then
+    if [[ "$ami_list" == *"$ami_name"* ]]; then
       echo "AMI with name $ami_name already exists."
       exit 0
     fi
