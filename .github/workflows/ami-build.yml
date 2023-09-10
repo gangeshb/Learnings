@@ -33,7 +33,7 @@ jobs:
         run: |
           region="ap-south-1"
           your_account_id="580272304833"
-          ami_name="base-ami"
+          ami_name=$(jq -r '.source[0].ami_name' packer_build.pkr.json)
           ami_list=$(aws ec2 describe-images \
             --region $region \
             --owners $your_account_id \
