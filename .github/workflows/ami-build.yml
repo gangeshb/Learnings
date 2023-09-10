@@ -51,6 +51,7 @@ jobs:
             echo "AMI check outcome: success"
             exit 0
           else
+            echo "Building AMI $ami_name"
             packer build packer_build.pkr.hcl
           fi
         env:
