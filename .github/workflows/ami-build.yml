@@ -28,14 +28,6 @@ jobs:
         run: packer version
         ## Add this step to confirm the Packer version
 
-      - name: Generate Packer JSON
-        run: packer build -machine-readable packer_build.pkr.hcl | tee packer_output.log
-        id: packer_output
-
-      - name: Extract AMI Name
-        id: extract_ami_name
-        run: echo "::set-output name=ami_name::$(grep -oP '(?<=amazon-ebs.base,artifact,0,id,).*' packer_output.log | tail -n 1)"
-
       - name: Check if AMI exists
         id: ami_check
         run: |
@@ -62,7 +54,6 @@ jobs:
 
       - name: Build AMI
         run: |
-          echo "Building the AMI..."
           packer validate packer_build.pkr.hcl
           packer build packer_build.pkr.hcl
         env:
