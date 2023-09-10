@@ -28,12 +28,20 @@ jobs:
         run: packer version
         ## Add this step to confirm the Packer version
 
+      - name: Generate Packer JSON
+        run: packer build -machine-readable packer_build.pkr.hcl | tee packer_output.log
+        id: packer_output
+
+      - name: Extract AMI Name
+        id: extract_ami_name
+        run: echo "::set-output name=ami_name::$(grep -oP '(?<=amazon-ebs.base,artifact,0,id,).*' packer_output.log | tail -n 1)"
+
       - name: Check if AMI exists
         id: ami_check
         run: |
           region="ap-south-1"
           your_account_id="580272304833"
-          ami_name=$(jq -r '.source[0].ami_name' packer_build.pkr.json)
+          ami_name="${{ steps.extract_ami_name.outputs.ami_name }}"
           ami_list=$(aws ec2 describe-images \
             --region $region \
             --owners $your_account_id \
