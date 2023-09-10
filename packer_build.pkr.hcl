@@ -24,7 +24,7 @@ build {
 
   provisioner "shell" {
     script = "./listAmis.sh"
-    environment_vars = ["{{ .Source.AmiName }}"]
+    environment_vars = ["AMI_NAME=$(toString .Source.AmiName)"]
   }
 
   provisioner "shell" {
